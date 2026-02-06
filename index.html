@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#0a0a1a">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>AI Trainer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ====== Loading ====== -->
+    <div id="loading" class="overlay-screen">
+        <div class="loader-ring"></div>
+        <div class="loader-text">Загрузка AI Trainer…</div>
+    </div>
+
+    <!-- ====== Countdown 3-2-1 ====== -->
+    <div id="countdown-overlay" class="overlay-screen" style="display:none">
+        <div id="countdown-num" class="countdown-num">3</div>
+    </div>
+
+    <!-- ====== Main App ====== -->
+    <div class="app">
+
+        <!-- XP Bar -->
+        <div class="xp-bar">
+            <div class="xp-fill" id="xp-fill"></div>
+            <span class="xp-level" id="xp-level">Ур. 1</span>
+            <span class="xp-text" id="xp-text">0 / 100 XP</span>
+            <div class="streak-badge" id="streak-badge">🔥 <span id="streak-num">0</span></div>
+        </div>
+
+        <!-- Goal Progress -->
+        <div class="goal-bar">
+            <div class="goal-fill" id="goal-fill"></div>
+            <span class="goal-label" id="goal-label">0 / 50</span>
+        </div>
+
+        <!-- Header -->
+        <div class="header">
+            <div class="header-group">
+                <button class="h-btn" id="btn-camera" title="Сменить камеру">📷</button>
+                <button class="h-btn" id="btn-voice" title="Голос">🔇</button>
+                <button class="h-btn" id="btn-tutorial" title="Инструкция">❓</button>
+            </div>
+            <select id="exercise-select">
+                <option value="pushup">Отжимания</option>
+                <option value="pullup">Подтягивания</option>
+                <option value="squat">Приседания</option>
+                <option value="crunch">Пресс</option>
+            </select>
+            <div class="header-group">
+                <input class="goal-input" id="goal-input" type="number" value="50" min="1" max="999" title="Цель">
+                <button class="h-btn h-btn-danger" id="btn-finish">Стоп</button>
+            </div>
+        </div>
+
+        <!-- ====== Camera View ====== -->
+        <div class="camera-view">
+            <video id="video" playsinline></video>
+            <canvas id="canvas"></canvas>
+            <canvas id="confetti-canvas"></canvas>
+
+            <!-- HUD Left -->
+            <div class="hud-left">
+                <div class="rep-counter" id="rep-counter">0</div>
+                <div class="hud-small-label">повторений</div>
+                <div class="form-ring-wrap" id="form-ring-wrap">
+                    <svg class="form-ring-svg" viewBox="0 0 36 36">
+                        <path class="form-ring-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                        <path class="form-ring-fill" id="form-ring-path" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" stroke-dasharray="0, 100"/>
+                    </svg>
+                    <span class="form-ring-value" id="form-score">—</span>
+                </div>
+                <div class="hud-small-label">форма</div>
+            </div>
+
+            <!-- HUD Right -->
+            <div class="hud-right">
+                <div class="hud-card"><div class="hud-card-lbl">Подход</div><div class="hud-card-val hud-orange" id="sets-val">1</div></div>
+                <div class="hud-card"><div class="hud-card-lbl">Время</div><div class="hud-card-val hud-white" id="timer-val">00:00</div></div>
+                <div class="hud-card"><div class="hud-card-lbl">Ккал</div><div class="hud-card-val hud-pink" id="cal-val">0</div></div>
+                <div class="hud-card"><div class="hud-card-lbl">Баланс</div><div class="hud-card-val hud-cyan" id="sym-val">—</div></div>
+            </div>
+
+            <!-- Feedback -->
+            <div class="feedback" id="feedback">Встаньте перед камерой</div>
+
+            <!-- Tempo pill -->
+            <div class="tempo-pill" id="tempo-pill"></div>
+
+            <!-- Partial rep warning -->
+            <div class="partial-warn" id="partial-warn">Глубже!</div>
+
+            <!-- Fatigue hint -->
+            <div class="fatigue-hint" id="fatigue-hint"></div>
+
+            <!-- Goal celebration -->
+            <div class="celebration" id="celebration-goal"><div class="celebration-text">🏆 ЦЕЛЬ ДОСТИГНУТА!</div></div>
+
+            <!-- Level up -->
+            <div class="celebration" id="celebration-level"><div class="celebration-text" id="levelup-text">⬆ УРОВЕНЬ 2!</div></div>
+
+            <!-- Badge unlock -->
+            <div class="badge-popup" id="badge-popup">
+                <div class="badge-popup-icon" id="badge-popup-icon">🎯</div>
+                <div class="badge-popup-name" id="badge-popup-name">Достижение</div>
+            </div>
+
+            <!-- Rest overlay -->
+            <div class="rest-overlay" id="rest-overlay">
+                <div class="rest-title">ОТДЫХ</div>
+                <div class="rest-countdown" id="rest-countdown">60</div>
+                <div class="rest-hint">Восстановите дыхание</div>
+                <button class="btn-accent" id="btn-rest-skip">Продолжить ▶</button>
+            </div>
+
+            <!-- Camera error -->
+            <div class="camera-error" id="camera-error">
+                <div class="camera-error-icon">📷</div>
+                <div class="camera-error-title">Нет доступа к камере</div>
+                <div class="camera-error-text">Разрешите доступ к камере в настройках браузера</div>
+                <button class="btn-accent" id="btn-retry">Повторить</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== MODALS ====== -->
+
+    <!-- Tutorial -->
+    <div class="modal" id="modal-tutorial">
+        <div class="modal-backdrop"></div>
+        <div class="modal-sheet">
+            <div class="modal-icon" id="tut-icon">💪</div>
+            <h2 id="tut-title">Отжимания</h2>
+            <p class="modal-desc" id="tut-desc"></p>
+            <ul class="tut-tips" id="tut-tips"></ul>
+            <button class="btn-primary" id="tut-ok">Понятно</button>
+        </div>
+    </div>
+
+    <!-- Daily Challenge -->
+    <div class="modal" id="modal-challenge">
+        <div class="modal-backdrop"></div>
+        <div class="modal-sheet">
+            <div class="modal-icon">🎯</div>
+            <h2>Вызов дня</h2>
+            <p class="modal-desc" id="challenge-desc"></p>
+            <div class="challenge-reward">🎁 +50 XP бонус за выполнение</div>
+            <button class="btn-primary" id="challenge-accept">Принять вызов!</button>
+            <button class="btn-ghost" id="challenge-skip">Пропустить</button>
+        </div>
+    </div>
+
+    <!-- Results -->
+    <div class="modal" id="modal-results">
+        <div class="modal-backdrop"></div>
+        <div class="modal-sheet modal-sheet-lg">
+            <h2 id="results-title">Тренировка завершена!</h2>
+            <div id="results-body"></div>
+            <canvas id="share-canvas" width="1080" height="1080" style="display:none"></canvas>
+            <div class="modal-actions">
+                <button class="btn-primary" id="btn-share">📤 Поделиться</button>
+                <button class="btn-outline" id="btn-badges-open">🏅 Достижения</button>
+                <button class="btn-outline" id="btn-history-open">📊 История</button>
+                <button class="btn-ghost" id="btn-new-workout">Новая тренировка</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- History -->
+    <div class="modal" id="modal-history">
+        <div class="modal-backdrop"></div>
+        <div class="modal-sheet modal-sheet-lg">
+            <h2>📊 История тренировок</h2>
+            <div class="chart-area" id="chart-area"></div>
+            <div id="history-list"></div>
+            <div class="modal-actions">
+                <button class="btn-ghost btn-danger-text" id="btn-clear-history">Очистить</button>
+                <button class="btn-primary" id="btn-close-history">Закрыть</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Achievements -->
+    <div class="modal" id="modal-badges">
+        <div class="modal-backdrop"></div>
+        <div class="modal-sheet modal-sheet-lg">
+            <h2>🏅 Достижения</h2>
+            <div class="badges-grid" id="badges-grid"></div>
+            <button class="btn-primary" id="btn-close-badges">Закрыть</button>
+        </div>
+    </div>
+
+    <!-- MediaPipe CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/pose/pose.js" crossorigin="anonymous"></script>
+    <script src="app.js"></script>
+</body>
+</html>
