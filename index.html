@@ -80,6 +80,15 @@
                 <span class="home-goal-label">повторений</span>
             </div>
 
+            <!-- Auto-rest toggle -->
+            <div class="home-setting-row">
+                <span class="home-setting-label">Авто-отдых (60 сек):</span>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="home-autorest-toggle" checked>
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+
             <!-- Start button -->
             <button class="home-start-btn" id="btn-start-training">
                 <span class="home-start-icon">▶</span>
@@ -102,10 +111,7 @@
 
             <!-- Visual guide zone -->
             <div class="guide-zone">
-                <div class="guide-zone-border">
-                    <svg id="guide-silhouette" class="guide-svg" viewBox="0 0 300 200" fill="none" xmlns="http://www.w3.org/2000/svg"></svg>
-                </div>
-                <div class="guide-zone-label">Расположите тело в этой зоне</div>
+                <img id="guide-image" class="guide-img" src="" alt="Расположение камеры">
             </div>
 
             <!-- Tips -->

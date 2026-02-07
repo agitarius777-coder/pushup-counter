@@ -20,20 +20,7 @@ const CFG = {
                 'Поставьте телефон на пол, прислонив к стене или опоре',
                 'Убедитесь, что в кадре нет посторонних людей'
             ],
-            // SVG: side view person in pushup position + phone
-            svg: `<line x1="40" y1="120" x2="260" y2="120" stroke="#333" stroke-width="1"/>
-                  <circle cx="220" cy="100" r="12" stroke="#00e676" stroke-width="1.5" fill="none"/>
-                  <line x1="208" y1="100" x2="140" y2="110" stroke="#00e676" stroke-width="1.5"/>
-                  <line x1="140" y1="110" x2="80" y2="110" stroke="#00e676" stroke-width="1.5"/>
-                  <line x1="140" y1="110" x2="148" y2="118" stroke="#00e676" stroke-width="1.5"/>
-                  <line x1="148" y1="118" x2="130" y2="120" stroke="#00e676" stroke-width="1.5"/>
-                  <line x1="80" y1="110" x2="65" y2="120" stroke="#00e676" stroke-width="1.5"/>
-                  <line x1="80" y1="110" x2="80" y2="120" stroke="#00e676" stroke-width="1.5"/>
-                  <rect x="15" y="95" width="8" height="16" rx="2" stroke="#40c4ff" stroke-width="1.5" fill="none"/>
-                  <line x1="19" y1="100" x2="60" y2="85" stroke="#40c4ff" stroke-width="0.8" stroke-dasharray="3,3"/>
-                  <line x1="19" y1="105" x2="60" y2="118" stroke="#40c4ff" stroke-width="0.8" stroke-dasharray="3,3"/>
-                  <text x="15" y="85" fill="#40c4ff" font-size="8" font-family="Inter,sans-serif">📱</text>
-                  <text x="100" y="140" fill="#555" font-size="9" text-anchor="middle" font-family="Inter,sans-serif">~1.5–2 м сбоку</text>`
+            img: 'img/guide-pushup.png'
         },
         pullup: {
             tips: [
@@ -42,17 +29,7 @@ const CFG = {
                 'Поставьте телефон на высоту ~1 метр (стол, стул)',
                 'Убедитесь, что хорошее освещение спереди'
             ],
-            svg: `<line x1="80" y1="30" x2="220" y2="30" stroke="#666" stroke-width="2"/>
-                  <circle cx="150" cy="48" r="10" stroke="#00e676" stroke-width="1.5" fill="none"/>
-                  <line x1="150" y1="58" x2="150" y2="100" stroke="#00e676" stroke-width="1.5"/>
-                  <line x1="150" y1="65" x2="130" y2="35" stroke="#00e676" stroke-width="1.5"/>
-                  <line x1="150" y1="65" x2="170" y2="35" stroke="#00e676" stroke-width="1.5"/>
-                  <line x1="150" y1="100" x2="138" y2="130" stroke="#00e676" stroke-width="1.5"/>
-                  <line x1="150" y1="100" x2="162" y2="130" stroke="#00e676" stroke-width="1.5"/>
-                  <rect x="146" y="155" width="8" height="16" rx="2" stroke="#40c4ff" stroke-width="1.5" fill="none"/>
-                  <line x1="150" y1="155" x2="130" y2="100" stroke="#40c4ff" stroke-width="0.8" stroke-dasharray="3,3"/>
-                  <line x1="150" y1="155" x2="170" y2="100" stroke="#40c4ff" stroke-width="0.8" stroke-dasharray="3,3"/>
-                  <text x="150" y="185" fill="#555" font-size="9" text-anchor="middle" font-family="Inter,sans-serif">2–3 м спереди</text>`
+            img: 'img/guide-pullup.png'
         },
         squat: {
             tips: [
@@ -61,19 +38,7 @@ const CFG = {
                 'Высота камеры — на уровне пояса (стол, стул, полка)',
                 'Встаньте боком к камере для лучшего распознавания'
             ],
-            svg: `<line x1="40" y1="160" x2="260" y2="160" stroke="#333" stroke-width="1"/>
-                  <circle cx="150" cy="50" r="10" stroke="#00e676" stroke-width="1.5" fill="none"/>
-                  <line x1="150" y1="60" x2="150" y2="100" stroke="#00e676" stroke-width="1.5"/>
-                  <line x1="150" y1="75" x2="130" y2="90" stroke="#00e676" stroke-width="1.5"/>
-                  <line x1="150" y1="75" x2="170" y2="90" stroke="#00e676" stroke-width="1.5"/>
-                  <line x1="150" y1="100" x2="140" y2="130" stroke="#00e676" stroke-width="1.5"/>
-                  <line x1="140" y1="130" x2="140" y2="160" stroke="#00e676" stroke-width="1.5"/>
-                  <line x1="150" y1="100" x2="160" y2="130" stroke="#00e676" stroke-width="1.5"/>
-                  <line x1="160" y1="130" x2="160" y2="160" stroke="#00e676" stroke-width="1.5"/>
-                  <rect x="25" y="87" width="8" height="16" rx="2" stroke="#40c4ff" stroke-width="1.5" fill="none"/>
-                  <line x1="29" y1="90" x2="110" y2="55" stroke="#40c4ff" stroke-width="0.8" stroke-dasharray="3,3"/>
-                  <line x1="29" y1="100" x2="110" y2="155" stroke="#40c4ff" stroke-width="0.8" stroke-dasharray="3,3"/>
-                  <text x="150" y="180" fill="#555" font-size="9" text-anchor="middle" font-family="Inter,sans-serif">~2 м сбоку, камера на уровне пояса</text>`
+            img: 'img/guide-squat.png'
         },
         crunch: {
             tips: [
@@ -82,19 +47,7 @@ const CFG = {
                 'Поставьте телефон на пол — угол снизу идеален',
                 'Лягте так, чтобы быть в центре кадра'
             ],
-            svg: `<line x1="40" y1="140" x2="260" y2="140" stroke="#333" stroke-width="1"/>
-                  <circle cx="210" cy="115" r="10" stroke="#00e676" stroke-width="1.5" fill="none"/>
-                  <line x1="200" y1="120" x2="140" y2="130" stroke="#00e676" stroke-width="1.5"/>
-                  <line x1="180" y1="125" x2="190" y2="110" stroke="#00e676" stroke-width="1.5"/>
-                  <line x1="180" y1="125" x2="175" y2="108" stroke="#00e676" stroke-width="1.5"/>
-                  <line x1="140" y1="130" x2="105" y2="118" stroke="#00e676" stroke-width="1.5"/>
-                  <line x1="105" y1="118" x2="100" y2="138" stroke="#00e676" stroke-width="1.5"/>
-                  <line x1="140" y1="130" x2="115" y2="125" stroke="#00e676" stroke-width="1.5"/>
-                  <line x1="115" y1="125" x2="108" y2="138" stroke="#00e676" stroke-width="1.5"/>
-                  <rect x="30" y="120" width="8" height="16" rx="2" stroke="#40c4ff" stroke-width="1.5" fill="none"/>
-                  <line x1="34" y1="123" x2="90" y2="105" stroke="#40c4ff" stroke-width="0.8" stroke-dasharray="3,3"/>
-                  <line x1="34" y1="133" x2="90" y2="138" stroke="#40c4ff" stroke-width="0.8" stroke-dasharray="3,3"/>
-                  <text x="150" y="165" fill="#555" font-size="9" text-anchor="middle" font-family="Inter,sans-serif">~1.5 м сбоку, камера на полу</text>`
+            img: 'img/guide-crunch.png'
         }
     },
     TUTORIALS: {
@@ -219,7 +172,7 @@ const S = {
     isVoice: false, goal: 50, goalReached: false,
     facingMode: 'user', camera: null,
     workoutOn: false, workoutStart: 0,
-    isResting: false, restInt: null, restSec: 60,
+    isResting: false, restInt: null, restSec: 60, autoRest: true,
     // form tracking
     minAngle: 180, bodyAngSum: 0, bodyAngN: 0,
     repScores: [], avgForm: 0,
@@ -267,6 +220,9 @@ function loadProfile() {
     }
     S.level = calcLevel(S.xp);
     S.goal = parseInt(DOM.goalInput.value) || parseInt($('home-goal-input').value) || 50;
+    S.autoRest = LS.get('autoRest') !== false;
+    const arToggle = $('home-autorest-toggle');
+    if (arToggle) arToggle.checked = S.autoRest;
 }
 
 function saveProfile() {
@@ -303,11 +259,34 @@ function beep(freq, dur) {
    SPEECH
    ========================================================== */
 const synth = window.speechSynthesis;
-function speak(text) {
+let bestVoice = null;
+
+function initVoices() {
+    const voices = synth.getVoices();
+    if (!voices.length) return;
+    const ru = voices.filter(v => v.lang && (v.lang.startsWith('ru') || v.lang === 'ru-RU'));
+    // Prefer high-quality cloud / online voices
+    bestVoice = ru.find(v => /google/i.test(v.name))
+             || ru.find(v => /microsoft.*online/i.test(v.name))
+             || ru.find(v => /yandex/i.test(v.name))
+             || ru.find(v => !v.localService)
+             || ru[0] || null;
+}
+if (typeof synth.onvoiceschanged !== 'undefined') {
+    synth.onvoiceschanged = initVoices;
+}
+initVoices();
+
+function speak(text, opts) {
     if (!S.isVoice) return;
-    if (!isNaN(text)) synth.cancel();
+    synth.cancel();
+    const o = opts || {};
     const u = new SpeechSynthesisUtterance(String(text));
-    u.lang = 'ru-RU'; u.rate = 1.15;
+    u.lang = 'ru-RU';
+    u.rate  = o.rate  || 1.0;
+    u.pitch = o.pitch || 1.0;
+    u.volume = 0.85;
+    if (bestVoice) u.voice = bestVoice;
     synth.speak(u);
 }
 
@@ -768,7 +747,11 @@ function onRep(formScore, bodyAngle) {
     setTimeout(() => DOM.repCounter.classList.remove('pulse'), 200);
 
     beep(660, 0.06);
-    speak(S.count);
+
+    // Natural voice — speak only on key reps, with varied phrases
+    if (S.count <= 3 || S.count % 5 === 0) {
+        speak(S.count);
+    }
 
     // Calories
     const mode = DOM.exerciseSel.value;
@@ -805,9 +788,22 @@ function onRep(formScore, bodyAngle) {
     // Timer
     startTimer();
 
-    // Milestones
-    if (S.count > 0 && S.count % 10 === 0) {
-        setTimeout(() => speak(S.count + ' повторений! Отлично!'), 300);
+    // Milestones — varied encouragement phrases
+    const encouragement = [
+        'Отлично!', 'Так держать!', 'Молодец!', 'Супер!',
+        'Продолжай!', 'Класс!', 'Сила!', 'Не останавливайся!'
+    ];
+    if (S.count === 10) {
+        setTimeout(() => speak('Десять! Хороший старт!', { rate: 0.95 }), 300);
+    } else if (S.count === 25) {
+        setTimeout(() => speak('Двадцать пять! ' + encouragement[Math.floor(Math.random() * encouragement.length)], { rate: 0.95 }), 300);
+    } else if (S.count === 50) {
+        setTimeout(() => speak('Полтинник! Невероятно!', { rate: 0.9 }), 300);
+    } else if (S.count === 100) {
+        setTimeout(() => speak('Сотня! Ты машина!', { rate: 0.9 }), 300);
+    } else if (S.count > 10 && S.count % 10 === 0) {
+        const phrase = encouragement[Math.floor(Math.random() * encouragement.length)];
+        setTimeout(() => speak(S.count + '! ' + phrase, { rate: 0.95 }), 300);
     }
 
     // Badges
@@ -821,7 +817,7 @@ function onRep(formScore, bodyAngle) {
    REST TIMER
    ========================================================== */
 function checkRest() {
-    if (S.count === 0 || S.isResting) return;
+    if (!S.autoRest || S.count === 0 || S.isResting) return;
     if (Date.now() - S.lastRepTS > CFG.REST_TRIGGER) startRest();
 }
 
@@ -1374,6 +1370,12 @@ document.querySelectorAll('.ex-card').forEach(card => {
     });
 });
 
+// Auto-rest toggle
+$('home-autorest-toggle').addEventListener('change', function () {
+    S.autoRest = this.checked;
+    LS.set('autoRest', S.autoRest);
+});
+
 // Home bottom links
 $('home-history-btn').addEventListener('click', showHistoryModal);
 $('home-badges-btn').addEventListener('click', showBadgesModal);
@@ -1386,7 +1388,7 @@ function showCameraGuide() {
     const guide = CFG.CAMERA_GUIDE[ex];
 
     $('guide-exercise').textContent = CFG.NAMES[ex];
-    $('guide-silhouette').innerHTML = guide.svg;
+    $('guide-image').src = guide.img;
 
     const tipsEl = $('guide-tips');
     tipsEl.innerHTML = guide.tips.map((tip, i) =>
@@ -1470,6 +1472,12 @@ function init() {
     loadProfile();
     updateXPBar();
     DOM.streakNum.textContent = S.streak;
+
+    // Preload guide images
+    Object.values(CFG.CAMERA_GUIDE).forEach(g => {
+        const img = new Image();
+        img.src = g.img;
+    });
 
     // Don't start camera — show home screen first
     DOM.loading.style.display = 'none';
