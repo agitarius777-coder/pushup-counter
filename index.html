@@ -15,16 +15,54 @@
 
     <!-- ====== Loading ====== -->
     <div id="loading" class="overlay-screen">
-        <div class="loader-ring"></div>
-        <div class="loader-text">Загрузка AI Trainer…</div>
+        <div class="loader-ring" id="loader-ring"></div>
+        <div class="loader-text" id="loader-text">Загрузка AI Trainer…</div>
+    </div>
+
+    <!-- ====== PROFILE CREATION SCREEN ====== -->
+    <div id="profile-screen" class="profile-screen" style="display:none">
+        <div class="profile-form">
+            <div class="profile-logo">AI<span>Trainer</span></div>
+            <h2 class="profile-title">Создайте профиль</h2>
+            <p class="profile-subtitle">Данные хранятся только на вашем устройстве</p>
+
+            <div class="profile-field">
+                <label for="profile-name">Ваше имя</label>
+                <input id="profile-name" type="text" placeholder="Как вас зовут?" maxlength="30">
+            </div>
+
+            <div class="profile-field">
+                <label for="profile-weight">Вес (кг)</label>
+                <input id="profile-weight" type="number" placeholder="70" min="30" max="250" value="70">
+            </div>
+
+            <div class="profile-field">
+                <label for="profile-extra-weight">Утяжелители (кг)</label>
+                <input id="profile-extra-weight" type="number" placeholder="0" min="0" max="100" value="0">
+            </div>
+
+            <div class="profile-field">
+                <label for="profile-goal">Цель тренировок</label>
+                <select id="profile-goal">
+                    <option value="strength">💪 Сила — меньше повторов, больше нагрузки</option>
+                    <option value="muscle" selected>🏋️ Мышечная масса — сбалансированно</option>
+                    <option value="endurance">🏃 Выносливость — больше повторов</option>
+                </select>
+            </div>
+
+            <button class="btn-primary profile-save-btn" id="btn-save-profile">
+                Начать тренировки
+            </button>
+        </div>
     </div>
 
     <!-- ====== HOME SCREEN ====== -->
-    <div id="home-screen" class="home-screen">
+    <div id="home-screen" class="home-screen" style="display:none">
         <div class="home-scroll">
             <!-- Header -->
             <div class="home-header">
                 <div class="home-logo">AI<span>Trainer</span></div>
+                <div id="home-user-name" class="home-user-name" style="display:none"></div>
                 <div class="home-stats-row">
                     <div class="home-stat">
                         <div class="home-stat-val" id="home-level">Ур. 1</div>
@@ -39,6 +77,12 @@
                         <div class="home-stat-lbl">Стрик</div>
                     </div>
                 </div>
+            </div>
+
+            <!-- Trainer plan -->
+            <div class="trainer-plan" id="trainer-plan" style="display:none">
+                <div class="trainer-plan-badge">🧠 ПЛАН ТРЕНЕРА</div>
+                <div id="trainer-plan-content"></div>
             </div>
 
             <!-- Daily challenge banner -->
@@ -95,10 +139,14 @@
                 Начать тренировку
             </button>
 
+            <!-- Progress chart -->
+            <div class="progress-chart-wrap" id="progress-chart"></div>
+
             <!-- Bottom links -->
             <div class="home-links">
                 <button class="home-link" id="home-history-btn">📊 История</button>
                 <button class="home-link" id="home-badges-btn">🏅 Достижения</button>
+                <button class="home-link" id="btn-edit-profile">⚙️ Профиль</button>
             </div>
         </div>
     </div>
@@ -177,7 +225,11 @@
 
             <!-- HUD Left -->
             <div class="hud-left">
-                <div class="rep-counter" id="rep-counter">0</div>
+                <div class="rep-counter-wrap">
+                    <button class="rep-adjust-btn" id="btn-rep-minus" title="−1">−</button>
+                    <div class="rep-counter" id="rep-counter">0</div>
+                    <button class="rep-adjust-btn" id="btn-rep-plus" title="+1">+</button>
+                </div>
                 <div class="hud-small-label">повторений</div>
                 <div class="form-ring-wrap" id="form-ring-wrap">
                     <svg class="form-ring-svg" viewBox="0 0 36 36">
@@ -310,6 +362,55 @@
     <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@mediapipe/pose/pose.js" crossorigin="anonymous"></script>
-    <script src="app.js"></script>
+
+    <!-- ES6 Module Entry Point -->
+    <script type="module" src="main.js"></script>
+
+    <!--
+        Fallback: if ES6 modules don't load (e.g. file:// protocol),
+        show a helpful error instead of infinite loading spinner.
+    -->
+    <script nomodule>
+        (function() {
+            var loading = document.getElementById('loading');
+            var text = document.getElementById('loader-text');
+            var ring = document.getElementById('loader-ring');
+            if (loading && text) {
+                if (ring) ring.style.display = 'none';
+                text.innerHTML =
+                    '<div style="text-align:center;max-width:340px;padding:0 20px">' +
+                    '<div style="font-size:2rem;margin-bottom:12px">⚠️</div>' +
+                    '<div style="font-size:1rem;font-weight:700;margin-bottom:8px;color:#ff5252">Не удалось загрузить приложение</div>' +
+                    '<div style="font-size:.82rem;color:#9999bb;line-height:1.6">' +
+                    'ES6 модули не поддерживаются при открытии через <code style="background:#1a1a35;padding:2px 6px;border-radius:4px">file://</code>.<br><br>' +
+                    'Запустите через локальный сервер:<br>' +
+                    '<code style="display:block;background:#1a1a35;padding:10px;border-radius:8px;margin:10px 0;font-size:.78rem;color:#00e676;text-align:left">' +
+                    'npx http-server -p 8080</code>' +
+                    'Затем откройте <code style="background:#1a1a35;padding:2px 6px;border-radius:4px;color:#40c4ff">http://localhost:8080</code>' +
+                    '</div></div>';
+            }
+        })();
+    </script>
+
+    <!-- Safety timeout: if module loaded but init() failed silently -->
+    <script>
+        window.__aiTrainerReady = false;
+        setTimeout(function() {
+            if (!window.__aiTrainerReady) {
+                var loading = document.getElementById('loading');
+                if (loading && loading.style.display !== 'none') {
+                    var text = document.getElementById('loader-text');
+                    var ring = document.getElementById('loader-ring');
+                    if (ring) ring.style.display = 'none';
+                    if (text) text.innerHTML =
+                        '<div style="text-align:center;max-width:340px;padding:0 20px">' +
+                        '<div style="font-size:2rem;margin-bottom:12px">⏳</div>' +
+                        '<div style="font-size:.9rem;color:#9999bb;line-height:1.6">' +
+                        'Загрузка занимает больше времени...<br>Проверьте подключение к интернету (нужен для загрузки MediaPipe).' +
+                        '</div></div>';
+                }
+            }
+        }, 12000);
+    </script>
 </body>
 </html>

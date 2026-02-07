@@ -1,5 +1,5 @@
 /* ============================================================
-   AI Trainer — Premium Dark Theme
+   AI Trainer — Premium Dark Theme (Refactored)
    ============================================================ */
 :root {
     --bg:        #0a0a1a;
@@ -69,6 +69,98 @@ body {
 @keyframes spin { to { transform: rotate(360deg); } }
 
 .loader-text { color: var(--text-2); font-size: .95rem; }
+
+/* ========== Profile Screen ========== */
+.profile-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 850;
+    background: var(--bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.profile-form {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.profile-logo {
+    font-size: 2rem;
+    font-weight: 900;
+    text-align: center;
+    color: var(--text);
+    letter-spacing: -1px;
+}
+.profile-logo span {
+    background: linear-gradient(135deg, var(--green), var(--cyan));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.profile-title {
+    text-align: center;
+    font-size: 1.3rem;
+    color: var(--text);
+    margin-top: -4px;
+}
+
+.profile-subtitle {
+    text-align: center;
+    font-size: .8rem;
+    color: var(--text-3);
+    margin-top: -8px;
+}
+
+.profile-field {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.profile-field label {
+    font-size: .75rem;
+    font-weight: 600;
+    color: var(--text-2);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.profile-field input,
+.profile-field select {
+    width: 100%;
+    padding: 12px 14px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    color: var(--text);
+    font-size: .95rem;
+    font-family: inherit;
+    outline: none;
+    transition: border-color .2s;
+}
+
+.profile-field input:focus,
+.profile-field select:focus {
+    border-color: var(--green);
+}
+
+.profile-field input::placeholder {
+    color: var(--text-3);
+}
+
+.profile-save-btn {
+    margin-top: 8px;
+    padding: 16px !important;
+    font-size: 1.05rem !important;
+}
 
 /* ========== Countdown ========== */
 #countdown-overlay {
@@ -222,13 +314,18 @@ select:focus, .goal-input:focus { border-color: var(--green); }
     overflow: hidden;
 }
 
-#video, #canvas {
+#video {
     position: absolute;
     inset: 0;
     width: 100%; height: 100%;
     object-fit: cover;
 }
-#canvas { z-index: 2; }
+#canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%; height: 100%;
+    z-index: 2;
+}
 #confetti-canvas {
     position: absolute;
     inset: 0;
@@ -242,11 +339,19 @@ select:focus, .goal-input:focus { border-color: var(--green); }
     position: absolute;
     top: 14px; left: 14px;
     z-index: 10;
-    pointer-events: none;
     display: flex;
     flex-direction: column;
     gap: 2px;
 }
+
+/* Rep counter with +/- buttons */
+.rep-counter-wrap {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    pointer-events: auto;
+}
+
 .rep-counter {
     font-size: 4.5rem;
     font-weight: 900;
@@ -254,14 +359,47 @@ select:focus, .goal-input:focus { border-color: var(--green); }
     line-height: 1;
     text-shadow: 0 0 30px rgba(0,230,118,.35), 2px 2px 4px rgba(0,0,0,.8);
     transition: transform .15s cubic-bezier(.4,0,.2,1);
+    pointer-events: none;
 }
 .rep-counter.pulse { transform: scale(1.2); }
+
+.rep-adjust-btn {
+    width: 32px;
+    height: 32px;
+    border: 1px solid rgba(255,255,255,.15);
+    border-radius: 50%;
+    background: rgba(15, 15, 40, .6);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    color: var(--text-2);
+    font-size: 1.2rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background .15s, transform .1s, color .15s;
+    line-height: 1;
+    padding: 0;
+    font-family: inherit;
+}
+.rep-adjust-btn:active {
+    transform: scale(.85);
+    background: rgba(0, 230, 118, .2);
+    color: var(--green);
+}
+.rep-adjust-btn:hover {
+    border-color: rgba(255,255,255,.3);
+    color: var(--text);
+}
+
 .hud-small-label {
     font-size: .65rem;
     color: var(--text-2);
     text-transform: uppercase;
     letter-spacing: 1.5px;
     text-shadow: 1px 1px 2px rgba(0,0,0,.8);
+    pointer-events: none;
 }
 
 /* Form Ring */
@@ -269,6 +407,7 @@ select:focus, .goal-input:focus { border-color: var(--green); }
     position: relative;
     width: 52px; height: 52px;
     margin-top: 6px;
+    pointer-events: none;
 }
 .form-ring-svg { width: 100%; height: 100%; transform: rotate(-90deg); }
 .form-ring-bg {
@@ -656,6 +795,16 @@ select:focus, .goal-input:focus { border-color: var(--green); }
 .rc-value { font-size: 1.6rem; font-weight: 900; color: var(--green); margin: 4px 0; }
 .rc-sub { font-size: .7rem; color: var(--text-3); }
 
+.results-rpe {
+    text-align: center;
+    font-size: .8rem;
+    color: var(--cyan);
+    padding: 8px;
+    background: var(--surface-2);
+    border-radius: var(--radius-sm);
+    margin-bottom: 10px;
+}
+
 /* ========== History ========== */
 .chart-area {
     background: var(--surface-2);
@@ -758,6 +907,13 @@ select:focus, .goal-input:focus { border-color: var(--green); }
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
+
+.home-user-name {
+    font-size: .85rem;
+    color: var(--text-2);
+    margin-top: 4px;
+}
+
 .home-stats-row {
     display: flex;
     justify-content: center;
@@ -776,6 +932,84 @@ select:focus, .goal-input:focus { border-color: var(--green); }
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-top: 2px;
+}
+
+/* ========== Trainer Plan ========== */
+.trainer-plan {
+    background: var(--surface-2);
+    border: 1px solid rgba(64, 196, 255, .15);
+    border-radius: var(--radius-md);
+    padding: 14px;
+    margin-bottom: 16px;
+}
+
+.trainer-plan-badge {
+    font-size: .6rem;
+    font-weight: 700;
+    color: var(--cyan);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 10px;
+}
+
+.plan-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.plan-icon {
+    font-size: 1.8rem;
+    flex-shrink: 0;
+}
+
+.plan-info {
+    flex: 1;
+}
+
+.plan-exercise {
+    font-size: .95rem;
+    font-weight: 700;
+    color: var(--text);
+}
+
+.plan-target {
+    font-size: .75rem;
+    color: var(--text-2);
+}
+
+.plan-intensity {
+    font-size: .65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.plan-weight {
+    font-size: .8rem;
+    color: var(--orange);
+    padding: 6px 10px;
+    background: rgba(255, 171, 64, .08);
+    border-radius: var(--radius-sm);
+    margin-bottom: 8px;
+}
+
+.plan-reasoning {
+    font-size: .78rem;
+    color: var(--text-2);
+    line-height: 1.5;
+    margin-bottom: 6px;
+}
+
+.plan-goal-badge {
+    display: inline-block;
+    font-size: .65rem;
+    font-weight: 600;
+    color: var(--gold);
+    background: rgba(255, 215, 64, .08);
+    padding: 3px 10px;
+    border-radius: 20px;
 }
 
 /* Daily challenge banner */
@@ -957,12 +1191,48 @@ select:focus, .goal-input:focus { border-color: var(--green); }
     font-size: .9rem;
 }
 
+/* ========== Progress Chart ========== */
+.progress-chart-wrap {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    background: var(--surface-2);
+    border-radius: var(--radius-md);
+    padding: 14px;
+    min-height: 0;
+}
+
+.progress-chart-wrap:empty {
+    display: none;
+}
+
+.progress-title {
+    font-size: .65rem;
+    color: var(--text-3);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+.progress-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.progress-empty {
+    text-align: center;
+    font-size: .8rem;
+    color: var(--text-3);
+    padding: 10px 0;
+}
+
 /* Bottom links */
 .home-links {
     display: flex;
     justify-content: center;
-    gap: 16px;
+    gap: 12px;
     margin-top: 20px;
+    flex-wrap: wrap;
 }
 .home-link {
     background: none;
@@ -1095,11 +1365,13 @@ select:focus, .goal-input:focus { border-color: var(--green); }
     .h-btn { padding: 5px 7px; font-size: .9rem; }
     select, .goal-input { padding: 5px 6px; font-size: .75rem; }
     .rep-counter { font-size: 3.2rem; }
+    .rep-adjust-btn { width: 26px; height: 26px; font-size: 1rem; }
     .feedback { font-size: 1.1rem; }
     .hud-card { padding: 4px 7px; min-width: 54px; }
     .hud-card-val { font-size: .9rem; }
     .form-ring-wrap { width: 42px; height: 42px; }
     .modal-sheet { padding: 22px 18px 28px; }
+    .profile-form { padding: 0 4px; }
 }
 
 @media (min-width: 768px) {
