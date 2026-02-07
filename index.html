@@ -19,13 +19,116 @@
         <div class="loader-text">Загрузка AI Trainer…</div>
     </div>
 
+    <!-- ====== HOME SCREEN ====== -->
+    <div id="home-screen" class="home-screen">
+        <div class="home-scroll">
+            <!-- Header -->
+            <div class="home-header">
+                <div class="home-logo">AI<span>Trainer</span></div>
+                <div class="home-stats-row">
+                    <div class="home-stat">
+                        <div class="home-stat-val" id="home-level">Ур. 1</div>
+                        <div class="home-stat-lbl">Уровень</div>
+                    </div>
+                    <div class="home-stat">
+                        <div class="home-stat-val" id="home-xp">0</div>
+                        <div class="home-stat-lbl">XP</div>
+                    </div>
+                    <div class="home-stat">
+                        <div class="home-stat-val">🔥 <span id="home-streak">0</span></div>
+                        <div class="home-stat-lbl">Стрик</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Daily challenge banner -->
+            <div class="home-challenge" id="home-challenge" style="display:none">
+                <div class="home-challenge-badge">🎯 ВЫЗОВ ДНЯ</div>
+                <div class="home-challenge-text" id="home-challenge-text"></div>
+                <div class="home-challenge-reward">+50 XP</div>
+            </div>
+
+            <!-- Exercise selection -->
+            <div class="home-section-title">Выберите упражнение</div>
+            <div class="exercise-cards" id="exercise-cards">
+                <button class="ex-card selected" data-ex="pushup">
+                    <div class="ex-card-icon">💪</div>
+                    <div class="ex-card-name">Отжимания</div>
+                    <div class="ex-card-record" id="rec-pushup">Рекорд: —</div>
+                </button>
+                <button class="ex-card" data-ex="pullup">
+                    <div class="ex-card-icon">🏋️</div>
+                    <div class="ex-card-name">Подтягивания</div>
+                    <div class="ex-card-record" id="rec-pullup">Рекорд: —</div>
+                </button>
+                <button class="ex-card" data-ex="squat">
+                    <div class="ex-card-icon">🦵</div>
+                    <div class="ex-card-name">Приседания</div>
+                    <div class="ex-card-record" id="rec-squat">Рекорд: —</div>
+                </button>
+                <button class="ex-card" data-ex="crunch">
+                    <div class="ex-card-icon">🔥</div>
+                    <div class="ex-card-name">Пресс</div>
+                    <div class="ex-card-record" id="rec-crunch">Рекорд: —</div>
+                </button>
+            </div>
+
+            <!-- Goal -->
+            <div class="home-goal-row">
+                <span class="home-goal-label">Цель на тренировку:</span>
+                <input class="home-goal-input" id="home-goal-input" type="number" value="50" min="1" max="999">
+                <span class="home-goal-label">повторений</span>
+            </div>
+
+            <!-- Start button -->
+            <button class="home-start-btn" id="btn-start-training">
+                <span class="home-start-icon">▶</span>
+                Начать тренировку
+            </button>
+
+            <!-- Bottom links -->
+            <div class="home-links">
+                <button class="home-link" id="home-history-btn">📊 История</button>
+                <button class="home-link" id="home-badges-btn">🏅 Достижения</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== CAMERA GUIDE ====== -->
+    <div id="camera-guide" class="camera-guide">
+        <div class="guide-content">
+            <div class="guide-title" id="guide-title">📷 Расположите камеру</div>
+            <div class="guide-exercise" id="guide-exercise">Отжимания</div>
+
+            <!-- Visual guide zone -->
+            <div class="guide-zone">
+                <div class="guide-zone-border">
+                    <svg id="guide-silhouette" class="guide-svg" viewBox="0 0 300 200" fill="none" xmlns="http://www.w3.org/2000/svg"></svg>
+                </div>
+                <div class="guide-zone-label">Расположите тело в этой зоне</div>
+            </div>
+
+            <!-- Tips -->
+            <div class="guide-tips" id="guide-tips"></div>
+
+            <!-- Camera toggle -->
+            <div class="guide-cam-row">
+                <span class="guide-cam-label">Камера:</span>
+                <button class="guide-cam-toggle" id="guide-cam-toggle">Фронтальная 🔄</button>
+            </div>
+
+            <button class="btn-primary guide-ready-btn" id="btn-guide-ready">Я готов — Начинаем!</button>
+            <button class="btn-ghost" id="btn-guide-back">← Назад в меню</button>
+        </div>
+    </div>
+
     <!-- ====== Countdown 3-2-1 ====== -->
     <div id="countdown-overlay" class="overlay-screen" style="display:none">
         <div id="countdown-num" class="countdown-num">3</div>
     </div>
 
-    <!-- ====== Main App ====== -->
-    <div class="app">
+    <!-- ====== Main App (hidden initially) ====== -->
+    <div class="app" id="app-screen" style="display:none">
 
         <!-- XP Bar -->
         <div class="xp-bar">

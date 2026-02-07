@@ -12,6 +12,91 @@ const CFG = {
     CAL: { pushup: 0.36, pullup: 1.0, squat: 0.32, crunch: 0.25 },
     NAMES: { pushup: 'Отжимания', pullup: 'Подтягивания', squat: 'Приседания', crunch: 'Пресс' },
     ICONS: { pushup: '💪', pullup: '🏋️', squat: '🦵', crunch: '🔥' },
+    CAMERA_GUIDE: {
+        pushup: {
+            tips: [
+                'Расположите телефон сбоку, на расстоянии 1.5–2 метра',
+                'Камера должна видеть вас целиком — от головы до ступней',
+                'Поставьте телефон на пол, прислонив к стене или опоре',
+                'Убедитесь, что в кадре нет посторонних людей'
+            ],
+            // SVG: side view person in pushup position + phone
+            svg: `<line x1="40" y1="120" x2="260" y2="120" stroke="#333" stroke-width="1"/>
+                  <circle cx="220" cy="100" r="12" stroke="#00e676" stroke-width="1.5" fill="none"/>
+                  <line x1="208" y1="100" x2="140" y2="110" stroke="#00e676" stroke-width="1.5"/>
+                  <line x1="140" y1="110" x2="80" y2="110" stroke="#00e676" stroke-width="1.5"/>
+                  <line x1="140" y1="110" x2="148" y2="118" stroke="#00e676" stroke-width="1.5"/>
+                  <line x1="148" y1="118" x2="130" y2="120" stroke="#00e676" stroke-width="1.5"/>
+                  <line x1="80" y1="110" x2="65" y2="120" stroke="#00e676" stroke-width="1.5"/>
+                  <line x1="80" y1="110" x2="80" y2="120" stroke="#00e676" stroke-width="1.5"/>
+                  <rect x="15" y="95" width="8" height="16" rx="2" stroke="#40c4ff" stroke-width="1.5" fill="none"/>
+                  <line x1="19" y1="100" x2="60" y2="85" stroke="#40c4ff" stroke-width="0.8" stroke-dasharray="3,3"/>
+                  <line x1="19" y1="105" x2="60" y2="118" stroke="#40c4ff" stroke-width="0.8" stroke-dasharray="3,3"/>
+                  <text x="15" y="85" fill="#40c4ff" font-size="8" font-family="Inter,sans-serif">📱</text>
+                  <text x="100" y="140" fill="#555" font-size="9" text-anchor="middle" font-family="Inter,sans-serif">~1.5–2 м сбоку</text>`
+        },
+        pullup: {
+            tips: [
+                'Расположите телефон спереди, на расстоянии 2–3 метра',
+                'Камера должна видеть перекладину и ваше тело целиком',
+                'Поставьте телефон на высоту ~1 метр (стол, стул)',
+                'Убедитесь, что хорошее освещение спереди'
+            ],
+            svg: `<line x1="80" y1="30" x2="220" y2="30" stroke="#666" stroke-width="2"/>
+                  <circle cx="150" cy="48" r="10" stroke="#00e676" stroke-width="1.5" fill="none"/>
+                  <line x1="150" y1="58" x2="150" y2="100" stroke="#00e676" stroke-width="1.5"/>
+                  <line x1="150" y1="65" x2="130" y2="35" stroke="#00e676" stroke-width="1.5"/>
+                  <line x1="150" y1="65" x2="170" y2="35" stroke="#00e676" stroke-width="1.5"/>
+                  <line x1="150" y1="100" x2="138" y2="130" stroke="#00e676" stroke-width="1.5"/>
+                  <line x1="150" y1="100" x2="162" y2="130" stroke="#00e676" stroke-width="1.5"/>
+                  <rect x="146" y="155" width="8" height="16" rx="2" stroke="#40c4ff" stroke-width="1.5" fill="none"/>
+                  <line x1="150" y1="155" x2="130" y2="100" stroke="#40c4ff" stroke-width="0.8" stroke-dasharray="3,3"/>
+                  <line x1="150" y1="155" x2="170" y2="100" stroke="#40c4ff" stroke-width="0.8" stroke-dasharray="3,3"/>
+                  <text x="150" y="185" fill="#555" font-size="9" text-anchor="middle" font-family="Inter,sans-serif">2–3 м спереди</text>`
+        },
+        squat: {
+            tips: [
+                'Расположите телефон сбоку, на расстоянии 2–2.5 метра',
+                'Камера должна видеть вас целиком — от головы до ступней',
+                'Высота камеры — на уровне пояса (стол, стул, полка)',
+                'Встаньте боком к камере для лучшего распознавания'
+            ],
+            svg: `<line x1="40" y1="160" x2="260" y2="160" stroke="#333" stroke-width="1"/>
+                  <circle cx="150" cy="50" r="10" stroke="#00e676" stroke-width="1.5" fill="none"/>
+                  <line x1="150" y1="60" x2="150" y2="100" stroke="#00e676" stroke-width="1.5"/>
+                  <line x1="150" y1="75" x2="130" y2="90" stroke="#00e676" stroke-width="1.5"/>
+                  <line x1="150" y1="75" x2="170" y2="90" stroke="#00e676" stroke-width="1.5"/>
+                  <line x1="150" y1="100" x2="140" y2="130" stroke="#00e676" stroke-width="1.5"/>
+                  <line x1="140" y1="130" x2="140" y2="160" stroke="#00e676" stroke-width="1.5"/>
+                  <line x1="150" y1="100" x2="160" y2="130" stroke="#00e676" stroke-width="1.5"/>
+                  <line x1="160" y1="130" x2="160" y2="160" stroke="#00e676" stroke-width="1.5"/>
+                  <rect x="25" y="87" width="8" height="16" rx="2" stroke="#40c4ff" stroke-width="1.5" fill="none"/>
+                  <line x1="29" y1="90" x2="110" y2="55" stroke="#40c4ff" stroke-width="0.8" stroke-dasharray="3,3"/>
+                  <line x1="29" y1="100" x2="110" y2="155" stroke="#40c4ff" stroke-width="0.8" stroke-dasharray="3,3"/>
+                  <text x="150" y="180" fill="#555" font-size="9" text-anchor="middle" font-family="Inter,sans-serif">~2 м сбоку, камера на уровне пояса</text>`
+        },
+        crunch: {
+            tips: [
+                'Расположите телефон сбоку, на расстоянии 1.5–2 метра',
+                'Камера должна видеть верхнюю часть тела и колени',
+                'Поставьте телефон на пол — угол снизу идеален',
+                'Лягте так, чтобы быть в центре кадра'
+            ],
+            svg: `<line x1="40" y1="140" x2="260" y2="140" stroke="#333" stroke-width="1"/>
+                  <circle cx="210" cy="115" r="10" stroke="#00e676" stroke-width="1.5" fill="none"/>
+                  <line x1="200" y1="120" x2="140" y2="130" stroke="#00e676" stroke-width="1.5"/>
+                  <line x1="180" y1="125" x2="190" y2="110" stroke="#00e676" stroke-width="1.5"/>
+                  <line x1="180" y1="125" x2="175" y2="108" stroke="#00e676" stroke-width="1.5"/>
+                  <line x1="140" y1="130" x2="105" y2="118" stroke="#00e676" stroke-width="1.5"/>
+                  <line x1="105" y1="118" x2="100" y2="138" stroke="#00e676" stroke-width="1.5"/>
+                  <line x1="140" y1="130" x2="115" y2="125" stroke="#00e676" stroke-width="1.5"/>
+                  <line x1="115" y1="125" x2="108" y2="138" stroke="#00e676" stroke-width="1.5"/>
+                  <rect x="30" y="120" width="8" height="16" rx="2" stroke="#40c4ff" stroke-width="1.5" fill="none"/>
+                  <line x1="34" y1="123" x2="90" y2="105" stroke="#40c4ff" stroke-width="0.8" stroke-dasharray="3,3"/>
+                  <line x1="34" y1="133" x2="90" y2="138" stroke="#40c4ff" stroke-width="0.8" stroke-dasharray="3,3"/>
+                  <text x="150" y="165" fill="#555" font-size="9" text-anchor="middle" font-family="Inter,sans-serif">~1.5 м сбоку, камера на полу</text>`
+        }
+    },
     TUTORIALS: {
         pushup: {
             desc: 'Примите упор лёжа. Руки чуть шире плеч. Опуститесь, пока угол в локте не станет меньше 90°, затем поднимитесь до полного выпрямления рук.',
@@ -69,6 +154,9 @@ const CFG = {
 const $ = id => document.getElementById(id);
 const DOM = {
     loading:       $('loading'),
+    homeScreen:    $('home-screen'),
+    appScreen:     $('app-screen'),
+    cameraGuide:   $('camera-guide'),
     countdownOvl:  $('countdown-overlay'),
     countdownNum:  $('countdown-num'),
     xpFill:        $('xp-fill'),
@@ -178,7 +266,7 @@ function loadProfile() {
         }
     }
     S.level = calcLevel(S.xp);
-    S.goal = parseInt(DOM.goalInput.value) || 50;
+    S.goal = parseInt(DOM.goalInput.value) || parseInt($('home-goal-input').value) || 50;
 }
 
 function saveProfile() {
@@ -874,7 +962,9 @@ function showTutorial(exercise) {
    ========================================================== */
 function finishWorkout() {
     if (S.count === 0) {
-        showHistoryModal();
+        if (S.camera) S.camera.stop();
+        S.camera = null;
+        goHome();
         return;
     }
 
@@ -1204,21 +1294,27 @@ $('challenge-accept').addEventListener('click', () => {
     S.challengeAccepted = true;
     const ch = S.challenge;
     if (ch) {
+        selectedExercise = ch.exercise;
         DOM.exerciseSel.value = ch.exercise;
         resetWorkout();
     }
     closeModal('modal-challenge');
-    runCountdown();
+    // If we're already in training, just run countdown; otherwise start training
+    if (DOM.appScreen.style.display !== 'none') {
+        runCountdown();
+    }
 });
 $('challenge-skip').addEventListener('click', () => {
     closeModal('modal-challenge');
-    runCountdown();
+    if (DOM.appScreen.style.display !== 'none') {
+        runCountdown();
+    }
 });
 
 $('btn-share').addEventListener('click', shareResults);
 $('btn-badges-open').addEventListener('click', () => { closeModal('modal-results'); showBadgesModal(); });
 $('btn-history-open').addEventListener('click', () => { closeModal('modal-results'); showHistoryModal(); });
-$('btn-new-workout').addEventListener('click', () => { closeModal('modal-results'); resetWorkout(); });
+$('btn-new-workout').addEventListener('click', () => { closeModal('modal-results'); resetWorkout(); goHome(); });
 
 $('btn-close-history').addEventListener('click', () => closeModal('modal-history'));
 $('btn-clear-history').addEventListener('click', () => {
@@ -1236,25 +1332,150 @@ $('btn-clear-history').addEventListener('click', () => {
 $('btn-close-badges').addEventListener('click', () => closeModal('modal-badges'));
 
 /* ==========================================================
+   HOME SCREEN
+   ========================================================== */
+let selectedExercise = 'pushup';
+
+function updateHomeScreen() {
+    // Stats
+    $('home-level').textContent = 'Ур. ' + S.level;
+    $('home-xp').textContent = S.xp;
+    $('home-streak').textContent = S.streak;
+
+    // Records
+    const records = LS.get('records') || {};
+    ['pushup','pullup','squat','crunch'].forEach(ex => {
+        const el = $('rec-' + ex);
+        if (el) el.textContent = records[ex] ? 'Рекорд: ' + records[ex] : 'Рекорд: —';
+    });
+
+    // Daily challenge
+    const ch = getDailyChallenge();
+    const banner = $('home-challenge');
+    if (ch) {
+        banner.style.display = 'flex';
+        $('home-challenge-text').textContent = ch.label;
+    } else {
+        banner.style.display = 'none';
+    }
+
+    // Sync selected card
+    document.querySelectorAll('.ex-card').forEach(card => {
+        card.classList.toggle('selected', card.dataset.ex === selectedExercise);
+    });
+}
+
+// Exercise card selection
+document.querySelectorAll('.ex-card').forEach(card => {
+    card.addEventListener('click', () => {
+        selectedExercise = card.dataset.ex;
+        document.querySelectorAll('.ex-card').forEach(c => c.classList.remove('selected'));
+        card.classList.add('selected');
+    });
+});
+
+// Home bottom links
+$('home-history-btn').addEventListener('click', showHistoryModal);
+$('home-badges-btn').addEventListener('click', showBadgesModal);
+
+/* ==========================================================
+   CAMERA GUIDE
+   ========================================================== */
+function showCameraGuide() {
+    const ex = selectedExercise;
+    const guide = CFG.CAMERA_GUIDE[ex];
+
+    $('guide-exercise').textContent = CFG.NAMES[ex];
+    $('guide-silhouette').innerHTML = guide.svg;
+
+    const tipsEl = $('guide-tips');
+    tipsEl.innerHTML = guide.tips.map((tip, i) =>
+        `<div class="guide-tip">
+            <div class="guide-tip-icon">${i + 1}</div>
+            <div>${tip}</div>
+        </div>`
+    ).join('');
+
+    updateGuideCamLabel();
+    DOM.cameraGuide.classList.add('active');
+}
+
+function updateGuideCamLabel() {
+    $('guide-cam-toggle').textContent = S.facingMode === 'user' ? 'Фронтальная 🔄' : 'Задняя 🔄';
+}
+
+$('guide-cam-toggle').addEventListener('click', () => {
+    S.facingMode = S.facingMode === 'user' ? 'environment' : 'user';
+    updateGuideCamLabel();
+    if (S.camera) S.camera.stop();
+    startCamera();
+});
+
+$('btn-guide-ready').addEventListener('click', () => {
+    DOM.cameraGuide.classList.remove('active');
+    runCountdown();
+});
+
+$('btn-guide-back').addEventListener('click', () => {
+    DOM.cameraGuide.classList.remove('active');
+    if (S.camera) S.camera.stop();
+    S.camera = null;
+    goHome();
+});
+
+/* ==========================================================
+   NAVIGATION
+   ========================================================== */
+function goHome() {
+    DOM.appScreen.style.display = 'none';
+    DOM.homeScreen.style.display = 'block';
+    DOM.cameraGuide.classList.remove('active');
+    DOM.loading.style.display = 'none';
+    updateHomeScreen();
+}
+
+function goTraining() {
+    // Sync exercise select with home selection
+    DOM.exerciseSel.value = selectedExercise;
+    DOM.goalInput.value = $('home-goal-input').value;
+    updateGoal();
+    resetWorkout();
+
+    // Hide home, show app
+    DOM.homeScreen.style.display = 'none';
+    DOM.appScreen.style.display = 'flex';
+
+    // Start camera & show guide
+    DOM.loading.style.display = 'flex';
+    startCamera();
+
+    // Small delay so camera initializes before guide shows on top
+    setTimeout(() => {
+        DOM.loading.style.display = 'none';
+        showCameraGuide();
+    }, 800);
+}
+
+// Start training button
+$('btn-start-training').addEventListener('click', goTraining);
+
+// Override finish to return home
+const origFinish = finishWorkout;
+// (finishWorkout already opens results modal, btn-new-workout now calls goHome)
+
+/* ==========================================================
    INIT
    ========================================================== */
 function init() {
     loadProfile();
     updateXPBar();
     DOM.streakNum.textContent = S.streak;
-    updateGoalBar();
-    startCamera();
 
-    // Show daily challenge after short delay
-    setTimeout(() => {
-        const first = !LS.get('tutSeen');
-        if (first) {
-            LS.set('tutSeen', ['pushup']);
-            showTutorial('pushup');
-        } else {
-            showDailyChallenge();
-        }
-    }, 2000);
+    // Don't start camera — show home screen first
+    DOM.loading.style.display = 'none';
+    DOM.appScreen.style.display = 'none';
+    DOM.homeScreen.style.display = 'block';
+    updateHomeScreen();
 }
 
 init();

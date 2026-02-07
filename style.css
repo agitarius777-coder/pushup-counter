@@ -723,6 +723,344 @@ select:focus, .goal-input:focus { border-color: var(--green); }
 .badge-cell-icon { font-size: 1.8rem; margin-bottom: 4px; }
 .badge-cell-name { font-size: .65rem; color: var(--text-2); line-height: 1.3; }
 
+/* ========== HOME SCREEN ========== */
+.home-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 800;
+    background: var(--bg);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+}
+.home-scroll {
+    min-height: 100%;
+    max-width: 440px;
+    margin: 0 auto;
+    padding: 0 20px 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Home header */
+.home-header {
+    text-align: center;
+    padding: 36px 0 20px;
+}
+.home-logo {
+    font-size: 2.2rem;
+    font-weight: 900;
+    letter-spacing: -1px;
+    color: var(--text);
+}
+.home-logo span {
+    background: linear-gradient(135deg, var(--green), var(--cyan));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+.home-stats-row {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 16px;
+}
+.home-stat { text-align: center; }
+.home-stat-val {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text);
+}
+.home-stat-lbl {
+    font-size: .6rem;
+    color: var(--text-3);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 2px;
+}
+
+/* Daily challenge banner */
+.home-challenge {
+    background: var(--surface-2);
+    border: 1px solid rgba(255,215,64,.15);
+    border-radius: var(--radius-md);
+    padding: 14px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+.home-challenge-badge {
+    font-size: .65rem;
+    font-weight: 700;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    white-space: nowrap;
+}
+.home-challenge-text {
+    flex: 1;
+    font-size: .85rem;
+    color: var(--text-2);
+    min-width: 120px;
+}
+.home-challenge-reward {
+    font-size: .75rem;
+    font-weight: 700;
+    color: var(--gold);
+    background: rgba(255,215,64,.1);
+    padding: 3px 10px;
+    border-radius: 20px;
+}
+
+/* Section title */
+.home-section-title {
+    font-size: .7rem;
+    color: var(--text-3);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 12px;
+}
+
+/* Exercise cards */
+.exercise-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+.ex-card {
+    background: var(--surface-2);
+    border: 2px solid transparent;
+    border-radius: var(--radius-md);
+    padding: 18px 12px;
+    text-align: center;
+    cursor: pointer;
+    font-family: inherit;
+    color: var(--text);
+    transition: border-color .2s, background .2s, transform .1s;
+}
+.ex-card:active { transform: scale(.96); }
+.ex-card:hover { background: var(--surface-3); }
+.ex-card.selected {
+    border-color: var(--green);
+    background: rgba(0,230,118,.06);
+}
+.ex-card-icon { font-size: 2rem; margin-bottom: 6px; }
+.ex-card-name { font-size: .9rem; font-weight: 700; margin-bottom: 4px; }
+.ex-card-record { font-size: .65rem; color: var(--text-3); }
+
+/* Goal row */
+.home-goal-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+.home-goal-label { font-size: .85rem; color: var(--text-2); }
+.home-goal-input {
+    width: 64px;
+    text-align: center;
+    padding: 8px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text);
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: inherit;
+    outline: none;
+}
+.home-goal-input:focus { border-color: var(--green); }
+
+/* Start button */
+.home-start-btn {
+    width: 100%;
+    padding: 18px;
+    background: linear-gradient(135deg, var(--green), #00c853);
+    color: #000;
+    font-weight: 900;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    font-family: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: transform .1s, box-shadow .2s;
+    box-shadow: 0 4px 24px rgba(0,230,118,.25);
+    letter-spacing: .5px;
+}
+.home-start-btn:active { transform: scale(.97); }
+.home-start-btn:hover { box-shadow: 0 6px 32px rgba(0,230,118,.4); }
+.home-start-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: rgba(0,0,0,.15);
+    border-radius: 50%;
+    font-size: .9rem;
+}
+
+/* Bottom links */
+.home-links {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 20px;
+}
+.home-link {
+    background: none;
+    border: none;
+    color: var(--text-3);
+    font-size: .85rem;
+    cursor: pointer;
+    font-family: inherit;
+    padding: 8px;
+    transition: color .2s;
+}
+.home-link:hover { color: var(--text-2); }
+
+/* ========== CAMERA GUIDE ========== */
+.camera-guide {
+    position: fixed;
+    inset: 0;
+    z-index: 700;
+    background: rgba(0, 0, 0, .82);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+    overflow-y: auto;
+}
+.camera-guide.active { display: flex; }
+
+.guide-content {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+}
+
+.guide-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text);
+    text-align: center;
+}
+.guide-exercise {
+    font-size: .8rem;
+    color: var(--green);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+}
+
+/* Guide zone */
+.guide-zone {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.guide-zone-border {
+    width: 85%;
+    height: 75%;
+    border: 2px dashed rgba(0,230,118,.5);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    animation: guidePulse 2s ease-in-out infinite;
+}
+@keyframes guidePulse {
+    0%, 100% { border-color: rgba(0,230,118,.5); }
+    50% { border-color: rgba(0,230,118,.2); }
+}
+.guide-svg {
+    width: 90%;
+    height: 90%;
+    opacity: .6;
+}
+.guide-zone-label {
+    position: absolute;
+    bottom: -4px;
+    font-size: .65rem;
+    color: var(--text-3);
+    text-align: center;
+    background: rgba(0,0,0,.6);
+    padding: 2px 12px;
+    border-radius: 10px;
+}
+
+/* Guide tips */
+.guide-tips {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.guide-tip {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: .82rem;
+    color: var(--text-2);
+    line-height: 1.4;
+}
+.guide-tip-icon {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    background: var(--surface-2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: .7rem;
+    color: var(--green);
+    font-weight: 700;
+}
+
+/* Camera toggle */
+.guide-cam-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.guide-cam-label { font-size: .82rem; color: var(--text-3); }
+.guide-cam-toggle {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 7px 14px;
+    border-radius: var(--radius-sm);
+    font-size: .82rem;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background .15s;
+}
+.guide-cam-toggle:hover { background: var(--surface-3); }
+
+.guide-ready-btn {
+    margin-top: 6px;
+    padding: 16px !important;
+    font-size: 1.05rem !important;
+}
+
 /* ========== Responsive ========== */
 @media (max-width: 380px) {
     .header { padding: 4px 6px; gap: 3px; }
